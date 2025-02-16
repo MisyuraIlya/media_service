@@ -17,7 +17,7 @@ type MediaEntry struct {
 }
 
 func GetPaths() []MediaEntry {
-	mediaHandlerURL := os.Getenv("MEDIA")
+	mediaHandlerURL := "https://api.digiapi.org/apiv2/mediaHandler"
 	resp, err := http.Get(mediaHandlerURL)
 	if err != nil {
 		log.Fatalf("Error fetching from %s: %v", mediaHandlerURL, err)
@@ -38,7 +38,7 @@ func GetPaths() []MediaEntry {
 }
 
 func UploadImage(data MediaEntry) error {
-	url := os.Getenv("UPLOADER")
+	url := "https://api.digiapi.org/apiv2/mediaUploader"
 	file, err := os.Open(data.Path)
 	if err != nil {
 		return fmt.Errorf("failed to open file %q: %w", data.Path, err)
